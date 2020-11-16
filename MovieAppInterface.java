@@ -27,9 +27,11 @@ import javax.swing.JLabel;
 
 public class MovieAppInterface extends JFrame implements ActionListener
 {
+	User u;
 	private JButton but1;
 	private JButton but2;
 	private JButton but3;
+	private JButton but4;
 	private JButton gBut4;
 	private JButton gBut5;
 	private JButton gBut6;
@@ -37,7 +39,6 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	private JButton gBut8;
 	private JButton gBut9;
 	private JPanel panel;
-	User u;
 	JLabel prompt = new JLabel();
 	JTextArea movies = new JTextArea();
 	JTextArea info = new JTextArea();
@@ -47,6 +48,7 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	private JButton searchButton;
 	private JButton sortByRating;
 	private JButton aboutButton;
+	JTextArea allComments = new JTextArea();
 	// images
 	JLabel label;
 	JLabel label2;
@@ -57,13 +59,15 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	 */
 	public MovieAppInterface(User u)
 	{
-		this.u=u;
+		this.u = u;
 		but1 = new JButton("Movies");
 		but1.addActionListener(this);
 		but2= new JButton("Genres");
 		but2.addActionListener(this);
 		but3 = new JButton("Profile");
 		but3.addActionListener(this);
+		but4 = new JButton("Comments");
+		but4.addActionListener(this);
 		gBut4 = new JButton("Fantasy");
 		gBut5 = new JButton("Comedy");
 		gBut6 = new JButton("Romance");
@@ -87,6 +91,7 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		panel.add(but1);
 		panel.add(but2);
 		panel.add(but3);
+		panel.add(but4);
 
 		JFrame frame = new JFrame();
 		frame.add(panel);
@@ -132,10 +137,13 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent event) 
 	{
+		User u = this.u;
+		
 		panel.removeAll();
 		panel.add(but1);
 		panel.add(but2);
 		panel.add(but3);
+		panel.add(but4);
 		
 		// ** Movie tab
 		if(event.getActionCommand().equals("Movies")) {
@@ -337,15 +345,64 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		
 		// ** Profile tab
 		if(event.getActionCommand().equals("Profile")) {
-			User u=this.u;
 			panel.add(prompt);
-			prompt.setText("                               Profile Information:");
+			prompt.setText("Profile Information:");
 			
-			
-			info.setText("Username: " + u.getUsername() + "\nPassword: " + u.getPassword());
-			
-			
+			Scanner obj = null;
+			File users = null;
+
+			try 
+			{
+				users=new File("users.txt");
+				obj = new Scanner(users);
+				String s = "";
+
+				while(obj.hasNextLine()) 
+				{
+					s = obj.nextLine() + "\n";
+				}
+				int i = s.indexOf(", ");
+				String start = s.substring(0,i);
+				String end = s.substring(i+2,s.length());
+				info.setText("Username: " + start + "\nPassword: " + end);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			finally
+			{
+				obj.close();
+			}
 			panel.add(info);
+		}
+		
+		if(event.getActionCommand().equals("Comments")) {
+			panel.add(prompt);
+			prompt.setText("This is all comments for all of the movies.\n");
+			
+			Scanner obj = null;
+			File comments = null;
+
+			try {
+				comments = new File("comments.txt");
+				obj = new Scanner(comments);
+				String s = "";
+
+				while(obj.hasNextLine()) {
+					s = obj.nextLine() + "\n";
+				}
+				
+				allComments.setText(s);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			finally
+			{
+				obj.close();
+			}
 		}
 		
 		// refresh bug fixed
