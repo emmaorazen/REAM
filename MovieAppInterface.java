@@ -345,35 +345,12 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		
 		// ** Profile tab
 		if(event.getActionCommand().equals("Profile")) {
+			User u=this.u;
 			panel.add(prompt);
 			prompt.setText("Profile Information:");
-			
-			Scanner obj = null;
-			File users = null;
-
-			try 
-			{
-				users=new File("users.txt");
-				obj = new Scanner(users);
-				String s = "";
-
-				while(obj.hasNextLine()) 
-				{
-					s = obj.nextLine() + "\n";
-				}
-				int i = s.indexOf(", ");
-				String start = s.substring(0,i);
-				String end = s.substring(i+2,s.length());
-				info.setText("Username: " + start + "\nPassword: " + end);
-			}
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
-			finally
-			{
-				obj.close();
-			}
+				
+			info.setText("Username: " + u.getUsername() + "\nPassword: " + u.getPassword() + "\nUser Status: " + u.getUserStatus());
+				
 			panel.add(info);
 		}
 		
