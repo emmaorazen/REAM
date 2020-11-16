@@ -27,11 +27,9 @@ import javax.swing.JLabel;
 
 public class MovieAppInterface extends JFrame implements ActionListener
 {
-	User u;
 	private JButton but1;
 	private JButton but2;
 	private JButton but3;
-	private JButton but4;
 	private JButton gBut4;
 	private JButton gBut5;
 	private JButton gBut6;
@@ -39,16 +37,18 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	private JButton gBut8;
 	private JButton gBut9;
 	private JPanel panel;
+	User u;
 	JLabel prompt = new JLabel();
 	JTextArea movies = new JTextArea();
 	JTextArea info = new JTextArea();
+	JTextArea allComments= new JTextArea();
 	JTextField search = new JTextField(20);
 	JLabel movie1 = new JLabel();
 	JLabel movie2 = new JLabel();
 	private JButton searchButton;
 	private JButton sortByRating;
 	private JButton aboutButton;
-	JTextArea allComments = new JTextArea();
+	private JButton comment;
 	// images
 	JLabel label;
 	JLabel label2;
@@ -59,21 +59,21 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	 */
 	public MovieAppInterface(User u)
 	{
-		this.u = u;
+		this.u=u;
 		but1 = new JButton("Movies");
 		but1.addActionListener(this);
 		but2= new JButton("Genres");
 		but2.addActionListener(this);
 		but3 = new JButton("Profile");
 		but3.addActionListener(this);
-		but4 = new JButton("Comments");
-		but4.addActionListener(this);
 		gBut4 = new JButton("Fantasy");
 		gBut5 = new JButton("Comedy");
 		gBut6 = new JButton("Romance");
 		gBut7 = new JButton("Sci-Fi");
 		gBut8 = new JButton("Mystery");
 		gBut9 = new JButton("Feel-Good");
+		comment= new JButton("Comments");
+		comment.addActionListener(this);
 		searchButton = new JButton("Search");
 		sortByRating = new JButton("Sort by Rating");
 		aboutButton = new JButton("About");
@@ -91,7 +91,7 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		panel.add(but1);
 		panel.add(but2);
 		panel.add(but3);
-		panel.add(but4);
+		panel.add(comment);
 
 		JFrame frame = new JFrame();
 		frame.add(panel);
@@ -137,13 +137,11 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent event) 
 	{
-		User u = this.u;
-		
 		panel.removeAll();
 		panel.add(but1);
 		panel.add(but2);
 		panel.add(but3);
-		panel.add(but4);
+		panel.add(comment);
 		
 		// ** Movie tab
 		if(event.getActionCommand().equals("Movies")) {
@@ -353,7 +351,6 @@ public class MovieAppInterface extends JFrame implements ActionListener
 				
 			panel.add(info);
 		}
-		
 		if(event.getActionCommand().equals("Comments")) {
 			panel.add(prompt);
 			prompt.setText("This is all comments for all of the movies.\n");
@@ -386,6 +383,7 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		panel.revalidate();
 		panel.repaint();
 	}
+
 
 	/**
 	 * 
