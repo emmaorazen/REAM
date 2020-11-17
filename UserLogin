@@ -86,16 +86,20 @@ public class UserLogin extends JFrame implements ActionListener {
 				users=new File("users.txt");
 				scan = new Scanner(users);
 				ArrayList<String> list = new ArrayList<String>( );
+				ArrayList<String> listUsers = new ArrayList<String>( );
 				
 				while(scan.hasNextLine()) 
 				{
-					list.add(scan.nextLine());
+
+					String s=scan.nextLine();
+					list.add(s);
+					listUsers.add(s.substring(0, s.indexOf(", ")));
 				}
 					
 			String userName = usernameT.getText();
 			String password = passwordT.getText();
 			
-			if(list.contains(userName + ", " + password + ", 2") || list.contains(userName + ", " + password + ", 3")) 
+			if(listUsers.contains(userName)) 
 				message.setText("User already exists");
 			else {
 				
@@ -137,9 +141,6 @@ public class UserLogin extends JFrame implements ActionListener {
 			String userName = usernameT.getText();
 			String password = passwordT.getText();
 			
-			if(!list.contains(userName + ", " + password + ", 2") && !list.contains(userName + ", " + password + ", 3")) 
-				message.setText("Invalid User. Enter as a guest or create a new account!");
-			
 			if(list.contains(userName + ", " + password + ", 3")) {
 				status=3;
 				message.setText("Hello " + userName);
@@ -148,6 +149,10 @@ public class UserLogin extends JFrame implements ActionListener {
 				panel1.remove(guest);
 				panel1.add(enter);
 			}
+			
+			if(!list.contains(userName + ", " + password + ", 2") && !list.contains(userName + ", " + password + ", 3")) 
+				message.setText("Invalid User. Enter as a guest or create a new account!");
+
 	
 			else {
 				message.setText("Hello " + userName);
