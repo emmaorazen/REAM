@@ -5,13 +5,21 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -30,6 +38,10 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	private JButton but1;
 	private JButton but2;
 	private JButton but3;
+	private JButton but4;
+	private JButton but5;
+	private JButton but6;
+	private JButton but7;
 	private JButton gBut4;
 	private JButton gBut5;
 	private JButton gBut6;
@@ -37,18 +49,22 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	private JButton gBut8;
 	private JButton gBut9;
 	private JPanel panel;
+	private JTextArea allComments;
 	User u;
 	JLabel prompt = new JLabel();
 	JTextArea movies = new JTextArea();
 	JTextArea info = new JTextArea();
-	JTextArea allComments= new JTextArea();
 	JTextField search = new JTextField(20);
 	JLabel movie1 = new JLabel();
 	JLabel movie2 = new JLabel();
+	JLabel deleteL = new JLabel();
+	JTextField deleteT= new JTextField();
 	private JButton searchButton;
 	private JButton sortByRating;
 	private JButton aboutButton;
 	private JButton comment;
+	JTextField commentT;
+	JLabel commentL;
 	// images
 	JLabel label;
 	JLabel label2;
@@ -60,12 +76,24 @@ public class MovieAppInterface extends JFrame implements ActionListener
 	public MovieAppInterface(User u)
 	{
 		this.u=u;
+		commentL = new JLabel("Enter a new Comment: ");
+	    commentT = new JTextField(30);
+	    deleteL = new JLabel("Copy the comment you want deleted: ");
+	    deleteT = new JTextField(10);
 		but1 = new JButton("Movies");
 		but1.addActionListener(this);
 		but2= new JButton("Genres");
 		but2.addActionListener(this);
 		but3 = new JButton("Profile");
 		but3.addActionListener(this);
+		but4 = new JButton("Make a new Comment");
+		but4.addActionListener(this);
+		but5= new JButton("Add comment to List");
+		but5.addActionListener(this);
+		but6= new JButton("Delete a Comment");
+		but6.addActionListener(this);
+		but7= new JButton("Hit here to delete");
+		but7.addActionListener(this);
 		gBut4 = new JButton("Fantasy");
 		gBut5 = new JButton("Comedy");
 		gBut6 = new JButton("Romance");
@@ -87,6 +115,7 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		sortByRating.addActionListener(this);
 		aboutButton.addActionListener(this);
 		panel = new JPanel();
+		allComments = new JTextArea();
 		
 		panel.add(but1);
 		panel.add(but2);
@@ -351,7 +380,9 @@ public class MovieAppInterface extends JFrame implements ActionListener
 				
 			panel.add(info);
 		}
+		
 		if(event.getActionCommand().equals("Comments")) {
+			User u=this.u;
 			panel.add(prompt);
 			prompt.setText("This is all comments for all of the movies.\n");
 			
@@ -364,11 +395,12 @@ public class MovieAppInterface extends JFrame implements ActionListener
 				String s = "";
 
 				while(obj.hasNextLine()) {
-					s = obj.nextLine() + "\n";
+					s = s + obj.nextLine() + "\n";
 				}
 				
 				allComments.setText(s);
 			}
+			
 			catch(Exception e)
 			{
 				System.out.println(e);
@@ -376,6 +408,61 @@ public class MovieAppInterface extends JFrame implements ActionListener
 			finally
 			{
 				obj.close();
+			}
+			panel.add(allComments);
+			if((u.getUserStatus() == 2))
+				panel.add(but4);
+			if(u.getUserStatus() == 3) {
+				panel.add(but4);
+				panel.add(but6);
+		}
+		}
+		
+		if(event.getActionCommand().equals("Make a new Comment")) {
+			panel.add(commentL);
+			panel.add(commentT);
+			panel.add(but5);
+		}
+		
+		if(event.getActionCommand().equals("Delete a Comment")) {
+			panel.add(allComments);
+			panel.add(deleteL);
+			panel.add(deleteT);
+			panel.add(but7);
+		}
+		
+		if(event.getActionCommand().equals("Hit here to delete")) {
+			String s = deleteT.getText();
+			try {
+			File file = new File("comments.txt");
+		    List<String> out = Files.lines(file.toPath())
+		                        .filter(line -> !line.contains(s))
+		                        .collect(Collectors.toList());
+		    Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			
+		}
+		
+		if(event.getActionCommand().equals("Add comment to List")) {
+			PrintWriter write = null;
+			File comments= new File("comments.txt");
+			
+			try
+			{
+				write = new PrintWriter(new BufferedWriter(new FileWriter(comments, true)));
+				write.print(commentT.getText() + " -" + u.getUsername() + "\n");
+			}
+			catch(Exception e) 
+			{
+				System.out.print(e);
+			}
+			finally 
+			{
+				write.close();
 			}
 		}
 		
