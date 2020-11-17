@@ -130,34 +130,34 @@ public class MovieAppInterface extends JFrame implements ActionListener
 		frame.setVisible(true);
 		
 		
-		String[] actors = {"Actor Name","",""};
+		ArrayList<String> actors=null;
 		movieArray.add(new Movie("The Hobbit", "Fantasy", 10, actors, new File("./TheHobbit.png")));
-		String[] actors2 = {"Actor Name","",""};
-		movieArray.add(new Movie("Maleficent", "Fantasy", 6, actors2, new File("./Maleficent.png")));
-		String[] actors3 = {"Actor Name","",""};
-		movieArray.add(new Movie("Lord of the Rings", "Fantasy", 10, actors3, new File("./LordOfTheRings.png")));
-		String[] actors4 = {"Actor Name","",""};
-		movieArray.add(new Movie("Harry Potter", "Fantasy", 9, actors4, new File("./HarryPotter.png")));
-		String[] actors5 = {"Actor Name","",""};
-		movieArray.add(new Movie("The Martian", "Sci-Fi", 9, actors5, new File("./TheMartian.png")));
-		String[] actors6 = {"Actor Name","",""};
-		movieArray.add(new Movie("Ender's Game", "Sci-Fi", 8, actors6, new File("./Ender'sGame.png")));
-		String[] actors7 = {"Actor Name","",""};
-		movieArray.add(new Movie("The Pricess Bride", "Romance", 8, actors7, new File("./ThePricessBride.png")));
-		String[] actors8 = {"Actor Name","",""};
-		movieArray.add(new Movie("A Goofy Movie", "Comedy", 7, actors8, new File("./AGoofyMovie.png")));
-		String[] actors9 = {"Actor Name","",""};
-		movieArray.add(new Movie("Megamind", "Comedy", 7, actors9, new File("./Megamind.png")));
-		String[] actors10 = {"Actor Name","",""};
-		movieArray.add(new Movie("Cinderella", "Romance", 6, actors10, new File("./Cinderella.png")));
-		String[] actors11 = {"Actor Name","",""};
-		movieArray.add(new Movie("The Hound of the Baskerville", "Mystery", 5, actors11, new File("./TheHoundOfTheBaskervilles.png")));
-		String[] actors12 = {"Actor Name","",""};
-		movieArray.add(new Movie("A Study in Scarlet", "Mystery", 4, actors12, new File("./AStudyInScarlet.png")));
-		String[] actors13 = {"Actor Name","",""};
-		movieArray.add(new Movie("Zootopia", "Feel-Good", 8, actors13, new File("./Zootopia.png")));
-		String[] actors14 = {"Actor Name","",""};
-		movieArray.add(new Movie("Ratatouille", "Feel-Good", 6, actors14, new File("./Ratatouille.png")));
+		//String[] actors2 = {"Actor Name","",""};
+		movieArray.add(new Movie("Maleficent", "Fantasy", 6, actors, new File("./Maleficent.png")));
+		//String[] actors3 = {"Actor Name","",""};
+		movieArray.add(new Movie("Lord of the Rings", "Fantasy", 10, actors, new File("./LordOfTheRings.png")));
+		//String[] actors4 = {"Actor Name","",""};
+		movieArray.add(new Movie("Harry Potter", "Fantasy", 9, actors, new File("./HarryPotter.png")));
+		//String[] actors5 = {"Actor Name","",""};
+		movieArray.add(new Movie("The Martian", "Sci-Fi", 9, actors, new File("./TheMartian.png")));
+		//String[] actors6 = {"Actor Name","",""};
+		movieArray.add(new Movie("Ender's Game", "Sci-Fi", 8, actors, new File("./Ender'sGame.png")));
+		//String[] actors7 = {"Actor Name","",""};
+		movieArray.add(new Movie("The Pricess Bride", "Romance", 8, actors, new File("./ThePricessBride.png")));
+		//String[] actors8 = {"Actor Name","",""};
+		movieArray.add(new Movie("A Goofy Movie", "Comedy", 7, actors, new File("./AGoofyMovie.png")));
+		//String[] actors9 = {"Actor Name","",""};
+		movieArray.add(new Movie("Megamind", "Comedy", 7, actors, new File("./Megamind.png")));
+		//String[] actors10 = {"Actor Name","",""};
+		movieArray.add(new Movie("Cinderella", "Romance", 6, actors, new File("./Cinderella.png")));
+		//String[] actors11 = {"Actor Name","",""};
+		movieArray.add(new Movie("The Hound of the Baskerville", "Mystery", 5, actors, new File("./TheHoundOfTheBaskervilles.png")));
+		//String[] actors12 = {"Actor Name","",""};
+		movieArray.add(new Movie("A Study in Scarlet", "Mystery", 4, actors, new File("./AStudyInScarlet.png")));
+		//String[] actors13 = {"Actor Name","",""};
+		movieArray.add(new Movie("Zootopia", "Feel-Good", 8, actors, new File("./Zootopia.png")));
+		//String[] actors14 = {"Actor Name","",""};
+		movieArray.add(new Movie("Ratatouille", "Feel-Good", 6, actors, new File("./Ratatouille.png")));
 	}
 
 	/**
