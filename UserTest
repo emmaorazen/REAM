@@ -9,6 +9,11 @@ public class UserTest {
 		User person1= new User();
 		assertEquals("", person1.getUsername());
 		assertEquals("", person1.getPassword());
+		User person2 = new User("user", "password");
+		assertEquals("user", person2.username);
+		assertEquals("password", person2.password);
+		User person3 = new User(1);
+		assertEquals("Guest", person3.username);
 	}
 
 	@Test
@@ -29,4 +34,10 @@ public class UserTest {
 		User person1= new User("admin","password");
 		assertEquals("password", person1.getPassword());
 	}
-}
+	
+	@Test
+	public void testGetUserStatus() {
+		User person1= new User("admin","password", 3);
+		assertEquals(3, person1.userStatus);
+	}
+	}
