@@ -1,0 +1,6 @@
+emma, hi, 2
+lucy, 12345, 2
+jo, 12, 2
+adam, 4321, 2
+admin, password, 3
+dog, cat, 2
