@@ -1,8 +1,15 @@
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class CommentTest {
+	
+	ArrayList<String> actorsList = new ArrayList<String>();
+	
+	File imgFile = new File("AGoofyMovie.png");
 	User u1= new User("Emma", "pass");
 	
 	@Test
@@ -14,20 +21,43 @@ public class CommentTest {
 
 	@Test
 	public void testCommentUserString() {
-		Comment com1=new Comment(u1, "great!");
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		Comment com1=new Comment(u1, "great!", mov);
 		assertEquals(u1, com1.getUser());
 		assertEquals("great!", com1.getComment());
 	}
 
 	@Test
 	public void testGetComment() {
-		Comment com2=new Comment(u1, "good");
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		Comment com2=new Comment(u1, "good", mov);
 		assertEquals("good", com2.getComment());
 	}
 
 	@Test
 	public void testGetUser() {
-		Comment com1=new Comment(u1, "great!");
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		Comment com1=new Comment(u1, "great!", mov);
 		assertEquals(u1, com1.getUser());
+	}
+	
+	@Test
+	public void testGetMovie() {
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		Comment com1=new Comment(u1, "great!", mov);
+		assertEquals(mov, com1.getMovie());
+		
 	}
 }
