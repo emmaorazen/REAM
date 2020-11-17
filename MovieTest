@@ -1,11 +1,15 @@
 import static org.junit.Assert.*;
-import java.util.ArrayList;
 
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.JLabel;
 import org.junit.Test;
 
 public class MovieTest {
 	
 	ArrayList<String> actorsList = new ArrayList<String>();
+	
+	File imgFile = new File("AGoofyMovie.png");
 
 	@Test
 	public void testMovie() {
@@ -13,7 +17,7 @@ public class MovieTest {
 		assertEquals("", mov.getName());
 		assertEquals("", mov.getGenre());
 		assertEquals(0, mov.getRate());
-		assertEquals(actorsList, mov.getActors());
+		assertEquals(null, mov.getActors());
 	}
 
 	@Test
@@ -21,7 +25,7 @@ public class MovieTest {
 		actorsList.add("Emma");
 		actorsList.add("Adam");
 		actorsList.add("Moira");
-		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList);
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
 		assertEquals("Avatar", mov.getName());
 		assertEquals("Thriller", mov.getGenre());
 		assertEquals(10, mov.getRate());
@@ -34,7 +38,7 @@ public class MovieTest {
 		actorsList.add("Emma");
 		actorsList.add("Adam");
 		actorsList.add("Moira");
-		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList);
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
 		assertEquals("Avatar", mov.getName());
 	}
 
@@ -44,7 +48,7 @@ public class MovieTest {
 		actorsList.add("Emma");
 		actorsList.add("Adam");
 		actorsList.add("Moira");
-		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList);
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
 		assertEquals("Thriller", mov.getGenre());
 	}
 
@@ -54,7 +58,7 @@ public class MovieTest {
 		actorsList.add("Emma");
 		actorsList.add("Adam");
 		actorsList.add("Moira");
-		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList);
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
 		assertEquals(10, mov.getRate());
 	}
 
@@ -64,7 +68,38 @@ public class MovieTest {
 		actorsList.add("Emma");
 		actorsList.add("Adam");
 		actorsList.add("Moira");
-		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList);
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
 		assertEquals(actorsList, mov.getActors());
+	}
+	
+	@Test
+	public void testGetMovieTitle() {
+		ArrayList<String> actorsList = new ArrayList<String>();
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		assertNotNull(mov.getMovieTitle());
+	}
+	
+	@Test
+	public void testgetMovieImage() {
+		ArrayList<String> actorsList = new ArrayList<String>();
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		assertNotNull(mov.getMovieImage());
+		
+	}
+	
+	@Test
+	public void testgetImageFile() {
+		ArrayList<String> actorsList = new ArrayList<String>();
+		actorsList.add("Emma");
+		actorsList.add("Adam");
+		actorsList.add("Moira");
+		Movie mov= new Movie("Avatar", "Thriller", 10, actorsList, imgFile);
+		assertEquals(imgFile, mov.getImageFile());
 	}
 }
