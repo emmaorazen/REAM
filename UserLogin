@@ -17,7 +17,7 @@ public class UserLogin extends JFrame implements ActionListener {
     JButton login, add, enter, guest;
     String stru, strp;
     User u;
-    
+    //UserLogin constructor
     UserLogin() {
       usernameL = new JLabel("User Name :");
       usernameT = new JTextField();
@@ -51,7 +51,7 @@ public class UserLogin extends JFrame implements ActionListener {
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  frame.setVisible(true);
    }
-   
+   //writes all of the users to the file 
    public void writeContactsToFile()
 	{
 		PrintWriter write = null;
@@ -74,6 +74,7 @@ public class UserLogin extends JFrame implements ActionListener {
     
     public void actionPerformed(ActionEvent event) 
 	{ 
+    	//allows user to create new account and add their name if it doesn't already exist 
 		if(event.getActionCommand().equals("Create Account")) 
 		{
 			
@@ -120,7 +121,7 @@ public class UserLogin extends JFrame implements ActionListener {
 				System.out.print(e);
 			}
 		}
-		
+		//login if the user exists 
 		if(event.getActionCommand().equals("LOGIN"))
 		{
 			Scanner scan = null;
@@ -168,7 +169,7 @@ public class UserLogin extends JFrame implements ActionListener {
 			}
 			u= new User(usernameT.getText(), passwordT.getText(), status);
 		}
-		
+		//only guest abilities 
 		if(event.getActionCommand().equals("Enter as a guest"))
 		{
 			panel1.remove(add);
@@ -183,7 +184,7 @@ public class UserLogin extends JFrame implements ActionListener {
 		    panel1.add(enter);
 		    panel1.setSize(200,125);
 		}
-		
+		//move to movie interface
 		if(event.getActionCommand().equals("Enter Application")) 
 		{
 			new MovieAppInterface(u);
